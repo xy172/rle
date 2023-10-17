@@ -1,0 +1,6 @@
+key,en
+MOD_XY_RLE_NAME,Resource Loss Editor
+ERROR_MISSING_DEPENDENCY_NAME,Error in loaded mods
+ERROR_MISSING_DEPENDENCY_DESCRIPTION,"Loaded mods require Mod Utils to function, which is not currently installed.\n\nCheck your mod dependencies carefully."
+UI_SETTINGS_XY_RLE_MOD,Enable/Disable Resource Loss Editor Mod.
+UI_SETTINGS_XY_RLE_LOSS_MULTIPLIER,Value to Multiply Losses by.
