@@ -3,16 +3,9 @@ extends ContentInfo
 const MOD_STRINGS := [
 	preload("mod_strings.en.translation"),
 ]
-
 # Settings
-var setting_rle_mod_status: bool = true setget _set_rle_mod_status
-var setting_rle_modifier_value: float = 1.0 setget _set_rle_modifier_value
-
-# Submodules
-#var bootleg_noise: Reference = preload("bootleg_noise.gd").new()
-#var font_manager: Reference = preload("font_manager.gd").new()
-#var bbcode_patches: Reference = preload("bbcode_patches.gd").new()
-#var fast_travel: Reference = preload("fast_travel.gd").new()
+var setting_rle_mod_status: bool = true
+var setting_rle_modifier_value: float = 1.0
 
 # Mod interop
 const MODUTILS: Dictionary = {
@@ -34,6 +27,13 @@ const MODUTILS: Dictionary = {
 	],
 }
 
+"""	"class_patch": [
+		{
+			"patch": "res://mods/xy_rle/menus/xyMenuHelper.gd",
+			"target": "res://menus/MenuHelper.gd",
+		},
+	],"""
+	
 func init_content() -> void:
 	
 	# Add translation strings
@@ -47,12 +47,3 @@ func init_content() -> void:
 	if not DLC.has_mod("cat_modutils", 0):
 		DLC.get_tree().connect("idle_frame", SceneManager, "change_scene", ["res://mods/xy_rle/menus/MissingDependency.tscn"], CONNECT_ONESHOT)
 		return
-
-	# Mod Utils callbacks
-	var modutils: Reference = DLC.mods_by_id.cat_modutils
-
-func _set_rle_mod_status(enabled: bool) -> void:
-	setting_rle_mod_status = enabled
-	
-func _set_rle_modifier_value(value: float) -> void:
-	setting_rle_modifier_value = value
