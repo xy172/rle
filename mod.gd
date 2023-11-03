@@ -7,6 +7,13 @@ const MOD_STRINGS := [
 var setting_rle_mod_status: bool = true
 var setting_rle_modifier_value: float = 1.0
 
+const RESOURCES := [
+	{
+		"resource": "battle/xyBattle.gd",
+		"resource_path": "res://battle/Battle.gd",
+	},
+]
+
 # Mod interop
 const MODUTILS: Dictionary = {
 	"updates": "https://gist.githubusercontent.com/xy172/0ea9c940b9282d483571c94c3bda4d84/raw/updates.json",
@@ -26,13 +33,6 @@ const MODUTILS: Dictionary = {
 		},
 	],
 }
-
-"""	"class_patch": [
-		{
-			"patch": "res://mods/xy_rle/menus/xyMenuHelper.gd",
-			"target": "res://menus/MenuHelper.gd",
-		},
-	],"""
 	
 func init_content() -> void:
 	
@@ -47,3 +47,7 @@ func init_content() -> void:
 	if not DLC.has_mod("cat_modutils", 0):
 		DLC.get_tree().connect("idle_frame", SceneManager, "change_scene", ["res://mods/xy_rle/menus/MissingDependency.tscn"], CONNECT_ONESHOT)
 		return
+		
+		for def in RESOURCES:
+			def.resource = load("res://mods/xy_rle/" + def.resource)
+			def.resource.take_over_path(def.resource_path)
